@@ -25,7 +25,7 @@ const (
 	CharLen          = 1
 	HeadLength       = 8
 	PhoneIndexLength = 9
-	PhoneDatFile     = "data/phone.dat"
+	DataFile         = "data/phone.dat"
 )
 
 // PhoneRecord 手机归属地信息
@@ -58,7 +58,7 @@ func init() {
 	if file != "" {
 		content, err = ioutil.ReadFile(file)
 	} else {
-		content, err = data.Asset(PhoneDatFile)
+		content, err = data.Asset(DataFile)
 	}
 	if err != nil {
 		panic(err)

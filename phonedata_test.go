@@ -26,7 +26,7 @@ func TestVersion(t *testing.T) {
 }
 
 func TestLoadDataFile(t *testing.T) {
-	err := LoadDataFile(PhoneDatFile)
+	err := LoadDataFile(DataFile)
 	if err != nil {
 		t.Error("测试失败")
 	}
