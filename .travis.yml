@@ -19,7 +19,8 @@ script:
   - go test -coverprofile c.out .
 
 after_script:
-  - ./test-reporter after-build $TRAVIS_TEST_RESULT
+  - ./test-reporter format-coverage -t gocov --prefix phonedata
+  - ./test-reporter upload-coverage
 
 notifications:
   email:
