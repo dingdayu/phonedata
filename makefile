@@ -1,7 +1,7 @@
 .PHONY: asset
 
-asset:
-	go-bindata -pkg phonedata -o bindata.go data
+bindata:
+	go-bindata -ignore=data/bindata.go -pkg data -o data/bindata.go data
 
 run:
 	go run example/main.go
