@@ -1,0 +1,27 @@
+sudo: required
+
+language: go
+
+env:
+  - GO111MODULE=auto
+
+go:
+  - 1.8.x
+  - 1.9.x
+  - 1.10.x
+  - 1.11.x
+  - 1.12.x
+
+
+install:
+  - go build .
+
+script:
+  - make test
+
+notifications:
+  email:
+    recipients:
+      - 614422099@qq.com
+    on_success: always
+    on_failure: always
