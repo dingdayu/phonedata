@@ -25,7 +25,7 @@ package main
 
 import (
 	"fmt"
-	"phonedata"
+	"github.com/dingdayu/phonedata"
 )
 
 func main() {

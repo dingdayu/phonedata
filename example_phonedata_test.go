@@ -2,7 +2,7 @@ package phonedata_test
 
 import (
 	"fmt"
-	"phonedata"
+	"github.com/dingdayu/phonedata"
 )
 
 // 查询一个手机号的归属地信息

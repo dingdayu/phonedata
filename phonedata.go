@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"phonedata/data"
+	"github.com/dingdayu/phonedata/data"
 )
 
 const (
