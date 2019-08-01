@@ -28,7 +28,7 @@ build: false
 deploy: false
 
 test_script:
-  - sh:go test -v -bench=".*" -benchmem
+  - go test -v -bench=".*" -benchmem
 
 notifications:
   - provider: Email
