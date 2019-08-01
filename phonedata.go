@@ -74,7 +74,7 @@ func LoadDataFile(file string) (err error) {
 	return nil
 }
 
-// PhoneRecord: echo string
+// PhoneRecord: 格式化输出归属地信息
 func (pr PhoneRecord) String() string {
 	return fmt.Sprintf("PhoneNum: %s\nAreaZone: %s\nCardType: %s\nCity: %s\nZipCode: %s\nProvince: %s\n", pr.PhoneNum, pr.AreaZone, pr.CardType, pr.City, pr.ZipCode, pr.Province)
 }
@@ -93,7 +93,7 @@ func Version() string {
 }
 
 // TotalRecord: phone.dat record total
-// 通过 索引长度 / 每个索引的长度 = 索引记录数
+// 	通过 索引长度 / 每个索引的长度 = 索引记录数
 func TotalRecord() int32 {
 	return (int32(len(content)) - firstRecordOffset()) / PHONE_INDEX_LENGTH
 }

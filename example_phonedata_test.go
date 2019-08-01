@@ -5,8 +5,7 @@ import (
 	"phonedata"
 )
 
-// 此注释将会被展示在页面上
-// 此函数将被展示在OverView区域
+// 查询一个手机号的归属地信息
 func Example() {
 	info, _ := phonedata.Find("13298181000")
 	fmt.Println(info)
