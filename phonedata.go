@@ -14,6 +14,7 @@ import (
 )
 
 const (
+	// 归属地标识符
 	CMCC             byte = iota + 0x01 // 中国移动
 	CUCC                                // 中国联通
 	CTCC                                // 中国电信
@@ -27,6 +28,7 @@ const (
 	PhoneDatFile     = "data/phone.dat"
 )
 
+// PhoneRecord 手机归属地信息
 type PhoneRecord struct {
 	PhoneNum string
 	Province string
@@ -37,7 +39,8 @@ type PhoneRecord struct {
 }
 
 var (
-	content  []byte
+	content []byte
+	// CardType 运营商类型
 	CardType = map[byte]string{
 		CMCC:  "中国移动",
 		CUCC:  "中国联通",
@@ -64,6 +67,7 @@ func init() {
 	firstOffset = toInt32(content[IntLen:HeadLength])
 }
 
+// LoadDataFile 加载自定义 data 文件
 func LoadDataFile(file string) (err error) {
 	content, err = ioutil.ReadFile(file)
 	if err != nil {
@@ -86,14 +90,12 @@ func toInt32(b []byte) int32 {
 	return int32(b[0]) | int32(b[1])<<8 | int32(b[2])<<16 | int32(b[3])<<24
 }
 
-// Version phone.dat version
-// 获取记录文件头部版本号
+// Version 获取 data 文件头部版本号
 func Version() string {
 	return string(content[0:IntLen])
 }
 
-// TotalRecord phone.dat record total
-// 	通过 索引长度 / 每个索引的长度 = 索引记录数
+// TotalRecord 获取 data 文件的记录数量
 func TotalRecord() int32 {
 	return (int32(len(content)) - firstRecordOffset()) / PhoneIndexLength
 }
@@ -102,16 +104,14 @@ func firstRecordOffset() int32 {
 	return toInt32(content[IntLen:HeadLength])
 }
 
-// IsPhone check phone is right
+// IsPhone 检查一个字符串是否合法
 func IsPhone(v string) bool {
 	reg := `^1([358][0-9]|14[57]|17[0678])\d{8}$`
 	rgx := regexp.MustCompile(reg)
 	return rgx.MatchString(v)
 }
 
-// Find search phone info
-// 通过对索引区域进行二分查找，得到记录偏移位置和卡类型
-// 再通过记录偏移获取号码详细信息
+// Find 获取一个手机号的归属地信息
 func Find(phoneNum string) (pr *PhoneRecord, err error) {
 	phoneNum = strings.TrimPrefix(phoneNum, "+")
 	if len(phoneNum) < 7 || len(phoneNum) > 11 {

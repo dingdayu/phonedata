@@ -1,6 +1,6 @@
 /**
 
-Package phonedata: 内地手机号归属信息.
+Package phonedata 内地手机号归属信息.
 
 Data file from: https://github.com/ls0f/phone
 
