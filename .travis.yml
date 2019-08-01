@@ -8,9 +8,6 @@ go:
   - 1.11.x
   - 1.12.x
 
-install:
-  - go build .
-
 script:
   - make test
 
