@@ -1,7 +1,7 @@
 version: "{build}"
 
 # Source Config
-clone_folder: c:\gopath\src\github.com\$username\$project
+clone_folder: c:\gopath\src\github.com\dingdayu\phonedata
 
 # Build host
 
