@@ -1,15 +1,43 @@
-version: 1.0.{build}
-build:
-  verbosity: minimal
+version: "{build}"
+
+# Source Config
+clone_folder: C:\projects\phonedata
+
+# Build host
+
+environment:
+  GOPATH: c:\gopath
+
+stack: go 1.14
+
+# Build
+install:
+  # Install the specific Go version.
+  - rmdir c:\go /s /q
+  - appveyor DownloadFile https://storage.googleapis.com/golang/go%GOVERSION%.windows-amd64.msi
+  - msiexec /i go%GOVERSION%.windows-amd64.msi /q
+  # - choco install bzr
+  - set Path=c:\go\bin;c:\gopath\bin;C:\Program Files\Mercurial\%Path%
+  - go version
+  - go env
+
+build: false
+deploy: false
+
+before_test:
+  - go vet ./...
+
 test_script:
-- sh: go env
-- sh: go test -v -bench=".*" -benchmem
+  - go version
+  - go env
+  - go test -v -bench=".*" -benchmem
+
 notifications:
-- provider: Email
-  to:
-  - 614422099@qq.com
-  subject: '[phonedata] win build'
-  message: 新的编译信息
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: false
+  - provider: Email
+    to:
+      - 614422099@qq.com
+    subject: '[phonedata] win build'
+    message: 新的编译信息
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: false
