@@ -17,10 +17,14 @@ before_script:
 script:
   - make test
   - go test -coverprofile c.out .
+  - go test -race -coverprofile=coverage.txt -covermode=atomic
 
 after_script:
   - ./test-reporter format-coverage -t gocov --prefix phonedata
   - ./test-reporter upload-coverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email:
